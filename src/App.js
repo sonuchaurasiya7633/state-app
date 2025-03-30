@@ -6,7 +6,12 @@ const App = () => {
   const [input, setInput]  =  useState("")
   const [fontSize, setFontSize] =  useState(30)
   const [color, setColor] = useState("green")
-  
+  const[list, setList] = useState("")
+  const[data,setData] = useState([])
+   
+  const addList = () =>{
+    setData([...data,list])
+  }
   return (
     <div
       style={{
@@ -113,6 +118,45 @@ const App = () => {
             background:color,
             marginTop:16
            }} />
+         </div>
+
+         <div>
+          <h1>Dynamic List (Using useState & Array)</h1>
+          <div>
+            <input 
+
+            onChange={(e)=>setList(e.target.value)}
+            placeholder='Enter Product Name'
+            style={{
+              border:'2px solid #ccc',
+              padding:12,
+              borderRadius:4,
+              width:350,
+
+            }}
+            />
+            <button 
+            onClick={addList()}
+            style={{
+              border:'none',
+              background:'yellow',
+              padding:14,
+              fontWeight:'bold',
+              marginLeft:6,
+              width:110,
+              borderRadius:6
+    
+            }}>Add</button>
+          </div>
+
+          <ul>
+           {
+           data.map((item,index)=>(
+            <li>{item}</li>
+           ))
+           }
+          </ul>
+
          </div>
       </div>
     </div>

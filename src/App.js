@@ -9,9 +9,12 @@ const App = () => {
   const[list, setList] = useState("")
   const[data,setData] = useState([])
    
-  const addList = () =>{
-    setData([...data,list])
-  }
+  const addList = () => {
+    if(list.trim()!==''){
+      setData([...data,list]);
+      setList('');
+    }
+  };
   return (
     <div
       style={{
@@ -136,15 +139,16 @@ const App = () => {
             }}
             />
             <button 
-            onClick={addList()}
+            onClick={addList}
             style={{
               border:'none',
-              background:'yellow',
+              background:'#015551',
               padding:14,
               fontWeight:'bold',
               marginLeft:6,
               width:110,
-              borderRadius:6
+              borderRadius:6,
+              color:'white'
     
             }}>Add</button>
           </div>
@@ -152,12 +156,13 @@ const App = () => {
           <ul>
            {
            data.map((item,index)=>(
-            <li>{item}</li>
+            <li key={index}>{item}</li>
            ))
            }
           </ul>
 
          </div>
+         
       </div>
     </div>
   );
